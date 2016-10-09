@@ -11,8 +11,12 @@ import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import voxspell.tools.CustomOptionPane;
 
@@ -150,6 +154,22 @@ public class Voxspell extends JPanel {
 		frame.setLocationByPlatform(true);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
+		/*
+		 * Creates drop down menu
+		 */
+		new DropDownMenu(frame);
+		
+		/*
+		 * Sets the programs look and feel
+		 */
+		/*
+		try { 
+		  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		*/
 	}
 
 	public static void main(String[] args) {
