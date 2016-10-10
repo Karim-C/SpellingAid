@@ -66,10 +66,11 @@ public class Settings extends JPanel {
 		_fontSizeComboBox.setSelectedItem(_fontSizes[1]);
 
 		/* Event handlers for Settings */
-		createVoiceDropDownEventHandler();
+		//createVoiceDropDownEventHandler();
 		createFontSizeEventHandler();
 	}
 
+	/*
 	private void createVoiceDropDownEventHandler() {
 		_ttsVoiceComboBox.addActionListener( (ActionListener) -> {
 			String voice = (String) _ttsVoiceComboBox.getSelectedItem();
@@ -89,6 +90,8 @@ public class Settings extends JPanel {
 		} 
 	}
 
+	*/
+	
 	private void createFontSizeEventHandler(){
 		_fontSizeComboBox.addActionListener( (ActionListener) -> {
 			String item = (String) _fontSizeComboBox.getSelectedItem();

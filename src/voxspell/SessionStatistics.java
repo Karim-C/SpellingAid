@@ -62,7 +62,7 @@ public class SessionStatistics extends JPanel {
 	 * @author Will Molloy
 	 */
 	private SessionStatistics() {
-		this.setBorder(BorderFactory.createTitledBorder("Session Statistics"));
+		this.setBorder(BorderFactory.createTitledBorder("<html><h1>Session Stats</h1></html>"));
 
 		_wordCountOutputArea = new JLabel();
 		_wordCountOutputArea.setText("Current Quiz) Correct: 0 Attempted: 0");

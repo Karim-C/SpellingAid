@@ -71,13 +71,13 @@ public class Voxspell extends JPanel {
 
 		/* Adding MainMenu/Stats/SpellingQuiz to a cardlayout */
 		_cardLayoutPanel = new JPanel();
-		_cardLayoutPanel.setPreferredSize(new Dimension(300,450));
+		_cardLayoutPanel.setPreferredSize(new Dimension(600,700));
 		_cardLayoutPanel.setLayout(cardLayout);
 		_cardLayoutPanel.add(_mainMenuPanel, MAIN_MENU);
 		_cardLayoutPanel.add(_spellingQuiz, NEW_QUIZ);
 		_cardLayoutPanel.add(_viewStatistics, VIEW_STATS);
 		
-		/* Side panel to hold session statistics and settings */
+		/* Side panel to hold session statistics and settings ***********************
 		_sidePanel = new JPanel();
 		_sidePanel.setPreferredSize(new Dimension(300,450));
 		_sidePanel.setLayout(new BorderLayout());
@@ -90,15 +90,16 @@ public class Voxspell extends JPanel {
 		
 		_sidePanel.add(_sessionStatistics, BorderLayout.NORTH);
 		_sidePanel.add(_settings, BorderLayout.SOUTH);
+		*/
 		
 		/* Adding the cardlayout and sidepanel to the overall panel */
 		this.add(_cardLayoutPanel, BorderLayout.WEST);
-		this.add(_sidePanel, BorderLayout.EAST);
+		// this.add(_sidePanel, BorderLayout.EAST); ******************
 	}
 
 	private void createMainMenuPanel() {
 		_mainMenuPanel = new JPanel();
-		_mainMenuPanel.setBorder(BorderFactory.createTitledBorder("Welcome to Voxspell!"));
+		_mainMenuPanel.setBorder(BorderFactory.createTitledBorder("<html><h1><font color=red>Vox</font>spell</h1></html>"));
 
 		_newSpellingQuizBtn = new JButton(NEW_QUIZ);
 		_viewStatsBtn = new JButton(VIEW_STATS);
@@ -139,6 +140,17 @@ public class Voxspell extends JPanel {
 	}
 
 	private static void createAndShowGUI() {
+		
+		/*
+		 * Sets the programs look and feel
+		 */
+		
+		try { 
+			  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e) {
+			    e.printStackTrace();
+			}
+		
 		Voxspell mainPanel = new Voxspell();
 
 		JFrame frame = new JFrame("Voxspell");
@@ -151,25 +163,15 @@ public class Voxspell extends JPanel {
 
 		frame.getContentPane().add(mainPanel);
 		frame.pack();
-		frame.setLocationByPlatform(true);
-		frame.setResizable(false);
+		frame.setLocationByPlatform(false);
+		//frame.setResizable(true);
 		frame.setVisible(true);
 		
 		/*
 		 * Creates drop down menu
 		 */
 		new DropDownMenu(frame);
-		
-		/*
-		 * Sets the programs look and feel
-		 */
-		/*
-		try { 
-		  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-		*/
+
 	}
 
 	public static void main(String[] args) {

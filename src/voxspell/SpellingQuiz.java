@@ -67,21 +67,21 @@ public class SpellingQuiz extends JPanel {
 
 	private void createGUI() {
 
-		this.setPreferredSize(new Dimension(300, 450)); 
+		this.setPreferredSize(new Dimension(600, 700)); 
 
 		// Area displayed by the program to the user
 		_programOutputArea = new JTextArea();
 		_programOutputArea.setEditable(false);
-		_programOutputArea.setPreferredSize(new Dimension(285, 320));
+		_programOutputArea.setPreferredSize(new Dimension(500, 500));
 		this.add(_programOutputArea, BorderLayout.NORTH);
 
 		// Where user enters the word
 		_wordEntryField = new JTextField();
-		_wordEntryField.setPreferredSize(new Dimension(230, 25));
+		_wordEntryField.setPreferredSize(new Dimension(500, 25));
 		this.add(_wordEntryField, BorderLayout.EAST);
 
 		// Btn pressed by user after entering word
-		_enterWordBtn = new JButton("Enter");
+		_enterWordBtn = new JButton("<html><b>Enter</b></html>");
 		_enterWordBtn.setPreferredSize(new Dimension(85,25));	/* default 5px between buttons */
 		this.add(_enterWordBtn, BorderLayout.WEST);
 				
@@ -119,7 +119,7 @@ public class SpellingQuiz extends JPanel {
 	 * New quiz: Ask user for level, ask for first word in quiz.
 	 */
 	public void newQuiz() {
-		this.setBorder(BorderFactory.createTitledBorder("Level ?")); 
+		this.setBorder(BorderFactory.createTitledBorder("<html><h1>Level ?</h1></html>")); 
 		promptUserForInitialLevel();
 		if (_level != -1){
 			resetFieldsReadWordsFromFileAndBeginQuiz();
@@ -143,7 +143,7 @@ public class SpellingQuiz extends JPanel {
 		_wordsAttempt = 0;
 		_firstAttempt = true;
 		_programOutputArea.setText(""); // any others?
-		this.setBorder(BorderFactory.createTitledBorder("Level " + _level));
+		this.setBorder(BorderFactory.createTitledBorder("<html><h1>Level <font color=red>" + _level + "</font></h1></html>"));
 
 		// displays the words correct and attempted as 0
 		SessionStatistics stats = SessionStatistics.getInstance();

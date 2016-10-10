@@ -19,6 +19,11 @@ import java.util.Scanner;
  * @author Will Molloy
  */
 public class CustomFileReader {
+	
+	/*
+	 * The word list read in to the program is determined by this field. If the user does not specify a list this in the default list. 
+	 */
+	private static String filename = "NZCER-spelling-lists.txt"; 
 
 	/**
 	 * Reads a set of 10 words from the wordlist file based on the level provided.
@@ -48,7 +53,7 @@ public class CustomFileReader {
 	private ArrayList<String> readInWords(int level) {
 
 		ArrayList<String> wordList = new ArrayList<String>();
-		String filename = "NZCER-spelling-lists.txt";
+		//String filename = "NZCER-spelling-lists.txt";
 		String levelID = "%Level " + level;
 
 		// The file is read into standard in
@@ -142,4 +147,7 @@ public class CustomFileReader {
 		return count;
 	}
 	
+	public static void changeInputWordList(String filePath) {
+		filename = filePath;
+	}
 }
