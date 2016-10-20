@@ -3,6 +3,7 @@ package voxspell;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
@@ -19,6 +20,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import voxspell.tools.CustomOptionPane;
+import voxspell.tools.SpecialRewardMaker;
 
 /**
  * Voxspell main class, shows the main menu initially.
@@ -144,12 +146,14 @@ public class Voxspell extends JPanel {
 		/*
 		 * Sets the programs look and feel
 		 */
-		
+		/*
 		try { 
 			  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			} catch (Exception e) {
 			    e.printStackTrace();
 			}
+		*/
+		System.out.println(UIManager.getLookAndFeel());
 		
 		Voxspell mainPanel = new Voxspell();
 
@@ -160,8 +164,14 @@ public class Voxspell extends JPanel {
 				//System.exit(0);
 			}
 		});
+		
+		// Creates special video
+		SpecialRewardMaker spm = new SpecialRewardMaker();
+		spm.execute();
 
 		frame.getContentPane().add(mainPanel);
+		frame.getContentPane().setBackground(Color.blue);
+		
 		frame.pack();
 		frame.setLocationByPlatform(false);
 		//frame.setResizable(true);

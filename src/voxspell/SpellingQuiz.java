@@ -1,6 +1,7 @@
 package voxspell;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,6 +69,8 @@ public class SpellingQuiz extends JPanel {
 	private void createGUI() {
 
 		this.setPreferredSize(new Dimension(600, 700)); 
+		
+		this.setBackground(Color.black);
 
 		// Area displayed by the program to the user
 		_programOutputArea = new JTextArea();

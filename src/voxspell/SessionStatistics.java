@@ -121,6 +121,7 @@ public class SessionStatistics extends JPanel {
 	 * @author Will Molloy - changed to clear a list of list of strings 
 	 */
 	public void clearStats() {
+		currentStats = null;
 		currentStats = new ArrayList<ArrayList<String[]>>(Collections.nCopies(NUM_LEVELS, new ArrayList<String[]>()));
 		generateAndShowTables();
 	}
