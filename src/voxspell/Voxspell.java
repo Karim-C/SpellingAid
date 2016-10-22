@@ -181,7 +181,9 @@ public class Voxspell extends JPanel {
 		frame.pack();
 		frame.setLocationByPlatform(false);
 		//frame.setResizable(true);
-		frame.setVisible(true);
+		frame.setVisible(false);
+		UserLogIn uLI = new UserLogIn();
+		uLI.getTheUserName(frame);
 		
 		/*
 		 * Creates drop down menu

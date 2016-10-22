@@ -70,7 +70,8 @@ public class SpellingQuiz extends JPanel {
 
 		this.setPreferredSize(new Dimension(600, 700)); 
 		
-		this.setBackground(Color.getHSBColor(226, 100, (float)65.5));
+		// Sets background color to dark blue
+		//this.setBackground(new Color(100, 100, 200));
 
 		// Area displayed by the program to the user
 		_programOutputArea = new JTextArea();
