@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import voxspell.tools.BackgroundMusic;
 import voxspell.tools.CustomOptionPane;
 import voxspell.tools.SpecialRewardMaker;
 
@@ -161,7 +162,7 @@ public class Voxspell extends JPanel {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e){
-				//System.exit(0);
+				BackgroundMusic.getInstance().stopBackgroundMusic();
 			}
 		});
 		
@@ -181,6 +182,9 @@ public class Voxspell extends JPanel {
 		 * Creates drop down menu
 		 */
 		new DropDownMenu(frame);
+		
+		/* Starts the background music*/
+		BackgroundMusic.getInstance();
 
 	}
 
