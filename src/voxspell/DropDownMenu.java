@@ -29,19 +29,12 @@ public class DropDownMenu {
 	private JMenuItem voice_rab;
 	
 	/*
-	 * Load menu item
+	 * Menu items
 	 */
 	private JMenuItem loadList;
-	
-	/*
-	 * Statistics menu item
-	 */
 	private JMenuItem showStats;
-	
-	/*
-	 * Help menu item
-	 */
 	private JMenuItem showHelp;
+	private JMenuItem showProgress;
 	
 	public DropDownMenu (JFrame frame) {
 		
@@ -90,8 +83,23 @@ public class DropDownMenu {
 		
 		createHelpActionHandler();
 		
+		// Game progress menu
+		JMenu progressMenu = new JMenu(makeBold("Progress"));
+		menubar.add(progressMenu);
+		
+		showProgress = new JMenuItem(makeBold("Show help"));
+		progressMenu.add(showProgress);
+		
+		createProgressActionHandler();
+		
 
 			
+	}
+	private void createProgressActionHandler() {
+		showProgress.addActionListener( (ActionListener) -> {
+			//GameProgress.getInstance();
+			GameProgress.display(frame);
+		});
 	}
 	private void createHelpActionHandler() {
 		showHelp.addActionListener( (ActionListener) -> {

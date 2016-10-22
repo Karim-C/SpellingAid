@@ -70,7 +70,7 @@ public class SpellingQuiz extends JPanel {
 
 		this.setPreferredSize(new Dimension(600, 700)); 
 		
-		this.setBackground(Color.black);
+		this.setBackground(Color.getHSBColor(226, 100, (float)65.5));
 
 		// Area displayed by the program to the user
 		_programOutputArea = new JTextArea();
@@ -96,7 +96,7 @@ public class SpellingQuiz extends JPanel {
 		_returnToMainMenuBtn = new ReturnToMainMenuBtn(this);
 		_returnToMainMenuBtn.setPreferredSize(new Dimension(230, 25));
 		this.add(_returnToMainMenuBtn, BorderLayout.SOUTH);
-
+		
 		createEventHandlers();
 	}
 

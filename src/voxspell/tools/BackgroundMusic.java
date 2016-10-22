@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 public class BackgroundMusic {
 	
 	Clip clip = null;
+	FloatControl gainControl;
 	
 	/* This class is a singleton class */
 	private static BackgroundMusic instance;
@@ -52,16 +54,22 @@ public class BackgroundMusic {
 		
 		clip.start();
 		clip.loop(clip.LOOP_CONTINUOUSLY);
+		gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 	}
 	
 	public void stopBackgroundMusic() {
 		clip.stop();
+		
 	}
 	
 	public void playBackgroundMusic () {
 		if (instance != null) {
 			clip.start();
 		}
+	}
+	
+	public void volumeBackgroundMusic() {
+		gainControl.setValue(-10.0f);
 	}
 	
 	/* If an error occurs while trying to load the music file or play the file this message is shown*/

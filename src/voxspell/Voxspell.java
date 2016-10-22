@@ -122,6 +122,7 @@ public class Voxspell extends JPanel {
 		_newSpellingQuizBtn.addActionListener( (ActionListener) -> {
 			cardLayout.show(_cardLayoutPanel, NEW_QUIZ);
 			_spellingQuiz.newQuiz();
+;
 		});
 
 		_viewStatsBtn.addActionListener( (ActionListener) -> {
@@ -147,14 +148,17 @@ public class Voxspell extends JPanel {
 		/*
 		 * Sets the programs look and feel
 		 */
-		/*
+		
 		try { 
 			  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			  
+			  
 			} catch (Exception e) {
 			    e.printStackTrace();
 			}
-		*/
-		System.out.println(UIManager.getLookAndFeel());
+		
+		
+		//System.out.println(UIManager.getLookAndFeel());
 		
 		Voxspell mainPanel = new Voxspell();
 
@@ -163,6 +167,7 @@ public class Voxspell extends JPanel {
 			@Override
 			public void windowClosing(WindowEvent e){
 				BackgroundMusic.getInstance().stopBackgroundMusic();
+				System.exit(0);
 			}
 		});
 		

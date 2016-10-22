@@ -249,5 +249,7 @@ public class SessionStatistics extends JPanel {
 	 */
 	public void displayWordCount(int wordsCorrectFirstAttempt, int wordsAttempt) {
 		_wordCountOutputArea.setText("Current Quiz) Correct: " + wordsCorrectFirstAttempt + " Attempted: " + wordsAttempt);
+		GameProgress.getInstance().adjustProgressBar(wordsAttempt*10);
 	}
+	
 }

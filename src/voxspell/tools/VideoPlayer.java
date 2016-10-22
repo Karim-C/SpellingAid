@@ -154,7 +154,8 @@ public class VideoPlayer extends EmbeddedMediaPlayerComponent {
 		_videoFrame.setLocation(100, 100);
 		_videoFrame.setSize(1050, 600);
 		_videoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // SO entire program doesn't close!
-		_videoFrame.setVisible(true);		
+		_videoFrame.setVisible(true);
+		BackgroundMusic.getInstance().stopBackgroundMusic();
 		video.playMedia(_videoFileName);
 		
 		
@@ -163,6 +164,7 @@ public class VideoPlayer extends EmbeddedMediaPlayerComponent {
 			@Override
 			public void windowClosing(WindowEvent e){
 				video.stop();
+				BackgroundMusic.getInstance().playBackgroundMusic();
 				if (_continueQuiz){
 					_spellingQuiz.nextLevel();
 				}
