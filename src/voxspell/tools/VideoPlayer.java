@@ -170,6 +170,14 @@ public class VideoPlayer extends EmbeddedMediaPlayerComponent {
 				}
 			}
 		});
+		
+		// ensures background music is started when the window is closed
+		_videoFrame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e){
+				BackgroundMusic.getInstance().playBackgroundMusic();
+			}
+		});
 	}
 	
 	/**

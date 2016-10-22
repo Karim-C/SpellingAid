@@ -177,7 +177,7 @@ public class SpellingQuiz extends JPanel {
 				_programOutputArea.append("Spell word " + (11 - _wordList.size()) + " of 10: ");
 				_textToSpeech.readSentence(line);
 			} else {
-				String line = "try once more. " + _wordList.get(0) + " ... " + _wordList.get(0);
+				String line = "try once more... " + _wordList.get(0);
 				_programOutputArea.append("Incorrect, try once more: ");
 				_textToSpeech.readSentence(line);
 				_firstAttempt = false; // resets so the next attempts can be tracked
@@ -212,6 +212,7 @@ public class SpellingQuiz extends JPanel {
 				_programOutputArea.append(_wordEntryField.getText() + "\n");
 
 				_stats.addToStats(_wordList.get(0), true, _level); // the word is recorded in the statistics
+				GameProgress.getInstance().setHighestStreak(true); // increments streak
 
 				_wordList.remove(0);// the word is removed from the list when it is correctly spelled
 
@@ -230,7 +231,7 @@ public class SpellingQuiz extends JPanel {
 				_stats.addToStats(_wordList.get(0), false, _level);
 				_textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
 				_programOutputArea.append(_wordEntryField.getText() + "\n");
-
+				GameProgress.getInstance().setHighestStreak(false); // resets streak
 				if (_firstAttempt) {
 					_firstAttempt = false; // the next attempt will no longer be the first
 				} else {

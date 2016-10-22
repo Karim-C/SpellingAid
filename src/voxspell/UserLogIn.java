@@ -27,14 +27,15 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class UserLogIn extends JPanel{
-	private JTextField textField;
+	private JTextField usernameTextField;
 	private JButton btnSubmit;
 	private JButton btnExit;
 	private JFrame mainFrame;
 	private JFrame jframe;
+	protected static String currentUsername;
 
 	
-/*	 This class is a singleton class 
+    // This class is a singleton class 
 	private static UserLogIn instance;
 	
 	
@@ -43,18 +44,18 @@ public class UserLogIn extends JPanel{
 			instance = new UserLogIn();
 		}
 		return instance;
-	}*/
-
+	}
+	
 	public UserLogIn () {
 		
 		
 		setBackground(new Color(0, 51, 153));
 		setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(115, 147, 243, 25);
-		add(textField);
-		textField.setColumns(10);
+		usernameTextField = new JTextField();
+		usernameTextField.setBounds(115, 147, 243, 25);
+		add(usernameTextField);
+		usernameTextField.setColumns(10);
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setForeground(new Color(255, 255, 255));
@@ -82,6 +83,7 @@ public class UserLogIn extends JPanel{
 	private void addedActionListers() {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				currentUsername = usernameTextField.getText();
 				mainFrame.setVisible(true);
 				jframe.setVisible(false);
 			}
@@ -95,8 +97,8 @@ public class UserLogIn extends JPanel{
 	}
 	private void display() {
 		jframe = new JFrame();
-		jframe.add(this);
-		jframe.setPreferredSize(new Dimension(400,400));
+		jframe.getContentPane().add(this);
+		jframe.setPreferredSize(new Dimension(500,400));
 		jframe.pack();
 		jframe.setVisible(true);
 		
@@ -109,9 +111,16 @@ public class UserLogIn extends JPanel{
 		});
 	}
 	
+	/* Displays a window when the application is started asking for the users user-name */
 	public void getTheUserName(JFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		display();
 		
+	}
+	
+	/* Returns the recorded user-name */
+	public String getCurrentUsername() {
+		String user = currentUsername;
+		return currentUsername;
 	}
 }
