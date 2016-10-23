@@ -15,9 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.text.DefaultEditorKit;
 
 import voxspell.tools.BackgroundMusic;
 import voxspell.tools.CustomOptionPane;
@@ -41,6 +44,8 @@ public class Voxspell extends JPanel {
 	// Main menu panel and the overall (Spelling Aid) panel
 	private JPanel _mainMenuPanel;
 	private static JPanel _cardLayoutPanel;
+
+	private static UIManager inputMap;
 	private SpellingQuiz _spellingQuiz;
 	private HistoryStatistics _viewStatistics = new HistoryStatistics();
 	
@@ -79,31 +84,19 @@ public class Voxspell extends JPanel {
 		_cardLayoutPanel.add(_mainMenuPanel, MAIN_MENU);
 		_cardLayoutPanel.add(_spellingQuiz, NEW_QUIZ);
 		_cardLayoutPanel.add(_viewStatistics, VIEW_STATS);
-		
-		/* Side panel to hold session statistics and settings ***********************
-		_sidePanel = new JPanel();
-		_sidePanel.setPreferredSize(new Dimension(300,450));
-		_sidePanel.setLayout(new BorderLayout());
-		
-		_sessionStatistics = SessionStatistics.getInstance();
-		_sessionStatistics.setPreferredSize(new Dimension(300,350));
-		
-		_settings = Settings.getInstance(this);
-		_settings.setPreferredSize(new Dimension(300,100));
-		
-		_sidePanel.add(_sessionStatistics, BorderLayout.NORTH);
-		_sidePanel.add(_settings, BorderLayout.SOUTH);
-		*/
-		
+
 		/* Adding the cardlayout and sidepanel to the overall panel */
 		this.add(_cardLayoutPanel, BorderLayout.WEST);
-		// this.add(_sidePanel, BorderLayout.EAST); ******************
+		
+		
+
 	}
 
 	private void createMainMenuPanel() {
 		_mainMenuPanel = new JPanel();
-		_mainMenuPanel.setBorder(BorderFactory.createTitledBorder("<html><h1><font color=red>Vox</font>spell</h1></html>"));
-
+		_mainMenuPanel.setBorder(BorderFactory.createTitledBorder("<html><h1><font color=yellow>Vox</font><font color=white>spell</font></h1></html>"));
+		_mainMenuPanel.setBackground(new Color(0, 51, 102));
+		_mainMenuPanel.setPreferredSize(new Dimension(600,700));
 		_newSpellingQuizBtn = new JButton(NEW_QUIZ);
 		_viewStatsBtn = new JButton(VIEW_STATS);
 		_clearStatsBtn = new JButton(CLEAR_STATS);
@@ -113,6 +106,7 @@ public class Voxspell extends JPanel {
 		buttonPanel.add(_newSpellingQuizBtn);
 		buttonPanel.add(_viewStatsBtn);
 		buttonPanel.add(_clearStatsBtn);
+		buttonPanel.setBackground(new Color(102, 153, 255));
 		_mainMenuPanel.add(buttonPanel, BorderLayout.CENTER);
 
 		createMainMenuEventHandlers();
@@ -163,11 +157,17 @@ public class Voxspell extends JPanel {
 		Voxspell mainPanel = new Voxspell();
 
 		JFrame frame = new JFrame("Voxspell");
+		
+		// stops the frame from being closed until the user confirms that the action was intended
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e){
-				BackgroundMusic.getInstance().stopBackgroundMusic();
-				System.exit(0);
+				int dialogResult = JOptionPane.showConfirmDialog (null, "Do you want to exist the Voxspell","Warning", 1);
+				if(dialogResult == JOptionPane.YES_OPTION){
+					BackgroundMusic.getInstance().stopBackgroundMusic();
+					System.exit(0);
+				}
 			}
 		});
 		
@@ -192,6 +192,11 @@ public class Voxspell extends JPanel {
 		
 		/* Starts the background music*/
 		BackgroundMusic.getInstance();
+		
+/*		// CTRL + H
+		KeyStroke key = KeyStroke.getKeyStroke("ctrl*(typed|(pressed)VK_H)");
+		// bind the keystroke to an object
+		inputMap.put(key, DefaultEditorKit.backwardAction);*/
 
 	}
 

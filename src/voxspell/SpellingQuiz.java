@@ -48,6 +48,7 @@ public class SpellingQuiz extends JPanel {
 	// tools
 	private CustomFileReader _fileReader = new CustomFileReader();
 	private TextToSpeech _textToSpeech = TextToSpeech.getInstance();
+	private boolean checked = true;
 
 	/**
 	 * Build GUI and configure
@@ -71,7 +72,7 @@ public class SpellingQuiz extends JPanel {
 		this.setPreferredSize(new Dimension(600, 700)); 
 		
 		// Sets background color to dark blue
-		//this.setBackground(new Color(100, 100, 200));
+		setBackground(new Color(102, 153, 255));
 
 		// Area displayed by the program to the user
 		_programOutputArea = new JTextArea();
@@ -98,6 +99,8 @@ public class SpellingQuiz extends JPanel {
 		_returnToMainMenuBtn.setPreferredSize(new Dimension(230, 25));
 		this.add(_returnToMainMenuBtn, BorderLayout.SOUTH);
 		
+		
+		
 		createEventHandlers();
 	}
 
@@ -108,14 +111,21 @@ public class SpellingQuiz extends JPanel {
 		
 		_repeatWordBtn.addActionListener((ActionListener) -> {
 			// Repeats the word when the user presses the repeat button
-			_textToSpeech.readSentenceSlowly(_wordList.get(0));
+			if (_textToSpeech.isDone()){
+				_textToSpeech.setDone(false);
+				_textToSpeech.readSentenceSlowly(_wordList.get(0));
+			}
+			
 		});
 	}
 	
 	private class WordEntryListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			checkInputWord();
+			if (checked && _textToSpeech.isDone()){
+				checked = false; // ensures that the first check is finished before performing another
+				checkInputWord();
+			}
 		}
 	}
 
@@ -123,7 +133,7 @@ public class SpellingQuiz extends JPanel {
 	 * New quiz: Ask user for level, ask for first word in quiz.
 	 */
 	public void newQuiz() {
-		this.setBorder(BorderFactory.createTitledBorder("<html><h1>Level ?</h1></html>")); 
+		this.setBorder(BorderFactory.createTitledBorder("<html><h1><font color=white>Level ?</font></h1></html>")); 
 		promptUserForInitialLevel();
 		if (_level != -1){
 			resetFieldsReadWordsFromFileAndBeginQuiz();
@@ -147,7 +157,7 @@ public class SpellingQuiz extends JPanel {
 		_wordsAttempt = 0;
 		_firstAttempt = true;
 		_programOutputArea.setText(""); // any others?
-		this.setBorder(BorderFactory.createTitledBorder("<html><h1>Level <font color=red>" + _level + "</font></h1></html>"));
+		this.setBorder(BorderFactory.createTitledBorder("<html><h1><font color=white>Level </font><font color=yellow>" + _level + "</font></h1></html>"));
 
 		// displays the words correct and attempted as 0
 		SessionStatistics stats = SessionStatistics.getInstance();
@@ -207,7 +217,7 @@ public class SpellingQuiz extends JPanel {
 			String word = _wordList.get(0);
 			
 
-			if (_wordEntryField.getText().equals(_wordList.get(0))) {
+			if (_wordEntryField.getText().equals(_wordList.get(0).toLowerCase())) {
 				_textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 				_programOutputArea.append(_wordEntryField.getText() + "\n");
 
@@ -247,6 +257,7 @@ public class SpellingQuiz extends JPanel {
 			_stats.displayWordCount(_wordsCorrectFirstAttempt, _wordsAttempt);
 
 			_wordEntryField.setText(""); // clears the entry field
+			checked = true;
 		}
 
 	}

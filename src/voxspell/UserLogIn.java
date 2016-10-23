@@ -49,7 +49,7 @@ public class UserLogIn extends JPanel{
 	public UserLogIn () {
 		
 		
-		setBackground(new Color(0, 51, 153));
+		setBackground(new Color(0, 51, 102));
 		setLayout(null);
 		
 		usernameTextField = new JTextField();

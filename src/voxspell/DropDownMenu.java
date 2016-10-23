@@ -27,6 +27,7 @@ public class DropDownMenu {
 	 */
 	private JMenuItem voice_kal;
 	private JMenuItem voice_rab;
+	private JMenuItem voice_nz;
 	
 	/*
 	 * Menu items
@@ -35,6 +36,7 @@ public class DropDownMenu {
 	private JMenuItem showStats;
 	private JMenuItem showHelp;
 	private JMenuItem showProgress;
+	
 	
 	public DropDownMenu (JFrame frame) {
 		
@@ -46,11 +48,13 @@ public class DropDownMenu {
 		JMenu voiceMenu = new JMenu(makeBold("Voice"));
 		menubar.add(voiceMenu);
 		
-		voice_rab = new JMenuItem(makeBold("rab"));
-		voice_kal = new JMenuItem(makeBold("kal"));
+		voice_rab = new JMenuItem(makeBold("Duke (UK)"));
+		voice_kal = new JMenuItem(makeBold("Carl (US)"));
+		voice_nz = new JMenuItem(makeBold("Gary (NZ)"));
 		
 		voiceMenu.add(voice_rab);
 		voiceMenu.add(voice_kal);
+		voiceMenu.add(voice_nz);
 		
 		createVoiceActionHandlers();
 		
@@ -121,6 +125,9 @@ public class DropDownMenu {
 		
 		voice_kal.addActionListener( (ActionListener) -> {
 			TextToSpeech.setVoice("(voice_kal_diphone)");
+		});
+		voice_nz.addActionListener( (ActionListener) -> {
+			TextToSpeech.setVoice("(voice_akl_nz_jdt_diphone)");
 		});
 	}
 	// Load menu action handlers

@@ -18,6 +18,7 @@ public class TextToSpeech {
 	private boolean _continueSpellingQuiz = false;
 	private boolean _slowerVoice = false;
 	private SpellingQuiz _spellingQuiz;
+	private boolean done = true;
 	
 	// Singleton
 	private static final TextToSpeech instance = new TextToSpeech();
@@ -77,6 +78,13 @@ public class TextToSpeech {
 		readSentence(sentence);
 	}
 	
+	public boolean isDone() {
+		return done;
+	}
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
 	/**
 	 * SwingWorker class to process bash commands on a background thread.
 	 * 
@@ -88,6 +96,7 @@ public class TextToSpeech {
 		private Process _process;
 		
 		private String _sentence;
+		
 
 		// hidden scm file to run festival - needed to change voice
 		private static final String hiddenScmFile = ".ttsScript.scm";
@@ -121,9 +130,11 @@ public class TextToSpeech {
 		}
 		
 		private void runBashCommand(String command) throws IOException, InterruptedException{
+			TextToSpeech.getInstance().setDone(false);
 			_processBuilder = new ProcessBuilder("bash" , "-c" , command);
 			_process = _processBuilder.start();
 			_process.waitFor();
+			TextToSpeech.getInstance().setDone(true);
 		}
 		
 		/**
@@ -131,6 +142,7 @@ public class TextToSpeech {
 		 */
 		@Override
 		public void done(){
+			setDone(true);
 			if (_continueSpellingQuiz){
 				_spellingQuiz.continueSpellingQuiz();
 				_continueSpellingQuiz = false;

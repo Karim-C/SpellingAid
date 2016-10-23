@@ -158,8 +158,6 @@ public class VideoPlayer extends EmbeddedMediaPlayerComponent {
 		BackgroundMusic.getInstance().stopBackgroundMusic();
 		video.playMedia(_videoFileName);
 		
-		
-		
 		_videoFrame.addWindowListener(new WindowAdapter(){
 			@Override
 			public void windowClosing(WindowEvent e){
