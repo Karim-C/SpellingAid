@@ -73,21 +73,25 @@ public class DropDownMenu {
 		loadList = new JMenuItem(makeBold("Load List"));
 		loadMenu.add(loadList);
 
+		loadList.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
 		
 		createLoadListActionHandler();
 		
 		// Session statistics
 		JMenu statsMenu = new JMenu(makeBold("Statistics"));
+		statsMenu.setToolTipText("Show your accurarcy for each word");
 		menubar.add(statsMenu);
 		
 		showStats = new JMenuItem(makeBold("Show Stats"));
 		statsMenu.add(showStats);
 
+		showStats.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		
 		createSessionStatistics();
 		
 		// Help menu
 		JMenu helpMenu = new JMenu(makeBold("Help"));
+		helpMenu.setToolTipText("Information about features");
 		menubar.add(helpMenu);
 		
 		showHelp = new JMenuItem(makeBold("Show help"));
@@ -99,10 +103,13 @@ public class DropDownMenu {
 		
 		// Game progress menu
 		JMenu progressMenu = new JMenu(makeBold("Progress"));
+		progressMenu.setToolTipText("Show your Highest and current streak");
 		menubar.add(progressMenu);
 		
 		showProgress = new JMenuItem(makeBold("Show progress"));
 		progressMenu.add(showProgress);
+		
+		showProgress.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 		
 		createProgressActionHandler();
 		
@@ -112,6 +119,8 @@ public class DropDownMenu {
 		
 		showSettings = new JMenuItem(makeBold("Show settings"));
 		settingsMenu.add(showSettings);
+		
+		showSettings.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		
 		settingsMenuActionHandler();
 		
