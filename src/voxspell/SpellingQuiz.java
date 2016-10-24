@@ -83,6 +83,7 @@ public class SpellingQuiz extends JPanel {
 		// Where user enters the word
 		_wordEntryField = new JTextField();
 		_wordEntryField.setPreferredSize(new Dimension(500, 25));
+		
 		this.add(_wordEntryField, BorderLayout.EAST);
 
 		// Btn pressed by user after entering word
@@ -102,6 +103,7 @@ public class SpellingQuiz extends JPanel {
 		
 		
 		createEventHandlers();
+		
 	}
 
 	private void createEventHandlers() {
@@ -115,7 +117,8 @@ public class SpellingQuiz extends JPanel {
 				_textToSpeech.setDone(false);
 				_textToSpeech.readSentenceSlowly(_wordList.get(0));
 			}
-			
+			// the text entry field is put into focus after button press
+			_wordEntryField.grabFocus();
 		});
 	}
 	
@@ -126,6 +129,8 @@ public class SpellingQuiz extends JPanel {
 				checked = false; // ensures that the first check is finished before performing another
 				checkInputWord();
 			}
+			// the text entry field is put into focus after button press
+			_wordEntryField.grabFocus();
 		}
 	}
 
@@ -181,7 +186,10 @@ public class SpellingQuiz extends JPanel {
 
 		// when the wordList is empty the quiz is finished
 		if (_wordList.size() > 0) {
-
+			
+			// the text entry field is put into focus
+			_wordEntryField.grabFocus();
+			
 			if (_firstAttempt) {
 				String line = "Please spell ... " + _wordList.get(0);
 				_programOutputArea.append("Spell word " + (11 - _wordList.size()) + " of 10: ");

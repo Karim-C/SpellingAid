@@ -4,6 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import java.awt.Dimension;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,6 +15,10 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollBar;
 import javax.swing.table.DefaultTableModel;
+
+import voxspell.tools.CaseInsensitiveComparator;
+import voxspell.tools.CustomFileReader;
+
 import javax.swing.JButton;
 
 /**
@@ -24,6 +32,7 @@ public class HighScores extends JPanel {
 
 	private static HighScores instance;
 	private JTable HighScorestable;
+	private ArrayList<String> _sortedStreaks;
 	
 	// this class is a singleton
 	public static HighScores getInstance() {
@@ -72,6 +81,15 @@ public class HighScores extends JPanel {
     public String [][] getLongestSteaks() {
     	return null;
     }
+    
+	private void readStatisticFiles() {
+		HashSet<String> wordsToDisplay = new HashSet<String>();
+		CustomFileReader fileReader = new CustomFileReader();
+			fileReader.readFileByLineIntoSet(FileManager.HIGH_STREAKS, wordsToDisplay);
+
+		_sortedStreaks = new ArrayList<String>(wordsToDisplay);
+		Collections.sort(_sortedStreaks, new CaseInsensitiveComparator()); // alphabetical order
+	}
 
     public static void main(String [] a) {
 
@@ -82,9 +100,6 @@ public class HighScores extends JPanel {
         jf.setVisible(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.getContentPane().add(tab);
-
-
-
 
     }
 }

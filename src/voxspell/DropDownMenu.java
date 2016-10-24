@@ -1,6 +1,7 @@
 package voxspell;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 import javax.swing.JFileChooser;
@@ -8,6 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
+
+import com.sun.glass.events.KeyEvent;
 
 import voxspell.tools.CustomFileReader;
 import voxspell.tools.TextToSpeech;
@@ -88,6 +93,8 @@ public class DropDownMenu {
 		showHelp = new JMenuItem(makeBold("Show help"));
 		helpMenu.add(showHelp);
 		
+		showHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+		
 		createHelpActionHandler();
 		
 		// Game progress menu
@@ -156,6 +163,10 @@ public class DropDownMenu {
 		 * This action lister allows the user to pick a new word list when the 'Load List' JMenuItem is clicked
 		 */
 		loadList.addActionListener((ActionListener) -> {
+			
+			JOptionPane.showMessageDialog(frame,
+				    "Once a list is load the new words will appear in the next level attempted.\n Please read the formatting instructions in the help");
+			
 			final JFileChooser fc = new JFileChooser();
 			int returnState = fc.showDialog(null, "Choose a word list");
 			
@@ -167,6 +178,7 @@ public class DropDownMenu {
 		});
 	}
 	
+	/* Opens a session statistics window */
 	private void createSessionStatistics() {
 		showStats.addActionListener( (ActionListener) -> {
 			SessionStatistics sessionStatistics = SessionStatistics.getInstance();

@@ -46,6 +46,8 @@ public class Voxspell extends JPanel {
 	private static JPanel _cardLayoutPanel;
 
 	private static UIManager inputMap;
+
+	private static JFrame frame;
 	private SpellingQuiz _spellingQuiz;
 	private HistoryStatistics _viewStatistics = new HistoryStatistics();
 	
@@ -117,7 +119,7 @@ public class Voxspell extends JPanel {
 		_newSpellingQuizBtn.addActionListener( (ActionListener) -> {
 			cardLayout.show(_cardLayoutPanel, NEW_QUIZ);
 			_spellingQuiz.newQuiz();
-;
+
 		});
 
 		_viewStatsBtn.addActionListener( (ActionListener) -> {
@@ -157,7 +159,7 @@ public class Voxspell extends JPanel {
 		
 		Voxspell mainPanel = new Voxspell();
 
-		JFrame frame = new JFrame("Voxspell");
+		frame = new JFrame("Voxspell");
 		
 		// stops the frame from being closed until the user confirms that the action was intended
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
