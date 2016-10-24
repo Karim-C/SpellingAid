@@ -8,6 +8,7 @@ package voxspell;
  * @author Will Molloy
  */
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,14 +63,15 @@ public class SessionStatistics extends JPanel {
 	 * @author Will Molloy
 	 */
 	private SessionStatistics() {
-		this.setBorder(BorderFactory.createTitledBorder("<html><h1>Session Stats</h1></html>"));
+		this.setBorder(BorderFactory.createTitledBorder("<html><h1><font color=white>Session Stats</font></h1></html>"));
 
 		_wordCountOutputArea = new JLabel();
-		_wordCountOutputArea.setText("Current Quiz) Correct: 0 Attempted: 0");
+		_wordCountOutputArea.setText("<html><font color=white>Current Quiz) Correct: 0 Attempted: 0</html></font>");
 
 		this.add(_wordCountOutputArea, BorderLayout.NORTH);
 		getTableAndScrollPaneInstance(); // initialises the empty List of JScrollPanes and adds JTables to them
 		clearStats(); // initialises the empty List of statistics and List of JTables
+		setBackground(new Color(0, 51, 102));
 	}
 
 	/**
@@ -248,7 +250,7 @@ public class SessionStatistics extends JPanel {
 	 * @author Karim Cisse
 	 */
 	public void displayWordCount(int wordsCorrectFirstAttempt, int wordsAttempt) {
-		_wordCountOutputArea.setText("Current Quiz) Correct: " + wordsCorrectFirstAttempt + " Attempted: " + wordsAttempt);
+		_wordCountOutputArea.setText("<html><font color=white>Current Quiz) Correct: " + wordsCorrectFirstAttempt + " Attempted: " + wordsAttempt + "</font></html>");
 		GameProgress.getInstance().adjustProgressBar(wordsAttempt*10);
 	}
 	

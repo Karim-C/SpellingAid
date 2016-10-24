@@ -94,7 +94,8 @@ public class Voxspell extends JPanel {
 
 	private void createMainMenuPanel() {
 		_mainMenuPanel = new JPanel();
-		_mainMenuPanel.setBorder(BorderFactory.createTitledBorder("<html><h1><font color=yellow>Vox</font><font color=white>spell</font></h1></html>"));
+		// Creates the boarder and the VOXSPELL logo
+		_mainMenuPanel.setBorder(BorderFactory.createTitledBorder("<html><font size=\"8\"><u><i><b><font color=yellow>Vox</font><font color=white>spell</font></b></i></u></font></html>"));
 		_mainMenuPanel.setBackground(new Color(0, 51, 102));
 		_mainMenuPanel.setPreferredSize(new Dimension(600,700));
 		_newSpellingQuizBtn = new JButton(NEW_QUIZ);
@@ -106,8 +107,8 @@ public class Voxspell extends JPanel {
 		buttonPanel.add(_newSpellingQuizBtn);
 		buttonPanel.add(_viewStatsBtn);
 		buttonPanel.add(_clearStatsBtn);
-		buttonPanel.setBackground(new Color(102, 153, 255));
-		_mainMenuPanel.add(buttonPanel, BorderLayout.CENTER);
+		buttonPanel.setBackground(new Color(0, 51, 102));
+		_mainMenuPanel.add(buttonPanel);
 
 		createMainMenuEventHandlers();
 	}

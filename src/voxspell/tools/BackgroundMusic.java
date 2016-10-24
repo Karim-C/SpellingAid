@@ -23,6 +23,7 @@ public class BackgroundMusic {
 	
 	Clip clip = null;
 	FloatControl gainControl;
+	private float volume;
 	
 	/* This class is a singleton class */
 	private static BackgroundMusic instance;
@@ -53,7 +54,7 @@ public class BackgroundMusic {
 		}
 		
 		clip.start();
-		clip.loop(clip.LOOP_CONTINUOUSLY);
+		clip.loop(Clip.LOOP_CONTINUOUSLY);
 		gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 	}
 	
@@ -68,8 +69,19 @@ public class BackgroundMusic {
 		}
 	}
 	
-	public void volumeBackgroundMusic() {
-		gainControl.setValue(-10.0f);
+	public void decreaseBackgroundMusic() {
+		volume --;
+		gainControl.setValue(volume);
+	}
+	public void increaseBackgroundMusic(int i) {
+		volume = (float) (-100 + i);
+		
+		// volume can't be set below -70.0f 
+		volume = (volume < -70.0f) ? -70.0f : volume;
+		
+		System.out.println(volume);
+		//volume = (volume >= 0) ? volume++ : 0;
+		gainControl.setValue(volume);
 	}
 	
 	/* If an error occurs while trying to load the music file or play the file this message is shown*/

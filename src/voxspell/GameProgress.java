@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 /**
  * This class contains methods associated with displaying the users progress
@@ -41,19 +42,26 @@ public class GameProgress extends JPanel {
 	 * Create the panel.
 	 */
 	public GameProgress() {
+		setBackground(new Color(0, 51, 102));
 
 		JLabel lblGameInformation = new JLabel("<html><h1>Game Information</h1></html>");
+		lblGameInformation.setForeground(new Color(255, 255, 255));
 		lblGameInformation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGameInformation.setBounds(12, 5, 426, 47);
 
 		progressBar = new JProgressBar();
+		progressBar.setToolTipText("Words attempted during this level");
+		progressBar.setBackground(new Color(0, 51, 102));
+		progressBar.setForeground(new Color(255, 204, 0));
 		progressBar.setBounds(12, 215, 426, 14);
 
 		JLabel lblLevelProgress = new JLabel("Level progress");
+		lblLevelProgress.setForeground(new Color(255, 255, 255));
 		lblLevelProgress.setBounds(12, 188, 105, 15);
 		setLayout(null);
 
 		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setForeground(new Color(255, 255, 255));
 		lblUsername.setBounds(12, 70, 105, 15);
 		add(lblUsername);
 		add(lblGameInformation);
@@ -61,24 +69,31 @@ public class GameProgress extends JPanel {
 		add(progressBar);
 
 		textFieldUsername = new JTextField();
+		textFieldUsername.setEditable(false);
 		textFieldUsername.setBounds(135, 68, 114, 25);
 		add(textFieldUsername);
 		textFieldUsername.setColumns(10);
 
 		JLabel lblLongestStreak = new JLabel("LongestStreak:");
+		lblLongestStreak.setToolTipText("Number of words correct in a row");
+		lblLongestStreak.setForeground(new Color(255, 255, 255));
 		lblLongestStreak.setBounds(12, 99, 114, 15);
 		add(lblLongestStreak);
 
 		textFieldLongestStreak = new JTextField();
+		textFieldLongestStreak.setEditable(false);
 		textFieldLongestStreak.setColumns(10);
 		textFieldLongestStreak.setBounds(135, 97, 114, 25);
 		add(textFieldLongestStreak);
 		
 		JLabel lblCurrentStreak = new JLabel("Current Streak:");
+		lblCurrentStreak.setToolTipText("Number of words correct in a row");
+		lblCurrentStreak.setForeground(new Color(255, 255, 255));
 		lblCurrentStreak.setBounds(12, 136, 114, 15);
 		add(lblCurrentStreak);
 		
 		currentStreakTextField = new JTextField();
+		currentStreakTextField.setEditable(false);
 		currentStreakTextField.setColumns(10);
 		currentStreakTextField.setBounds(135, 134, 114, 25);
 		add(currentStreakTextField);

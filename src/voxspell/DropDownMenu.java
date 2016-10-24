@@ -36,6 +36,7 @@ public class DropDownMenu {
 	private JMenuItem showStats;
 	private JMenuItem showHelp;
 	private JMenuItem showProgress;
+	private JMenuItem showSettings;
 	
 	
 	public DropDownMenu (JFrame frame) {
@@ -46,6 +47,7 @@ public class DropDownMenu {
 		
 		// Voice menu
 		JMenu voiceMenu = new JMenu(makeBold("Voice"));
+		voiceMenu.setToolTipText("Select a synthetic voice");
 		menubar.add(voiceMenu);
 		
 		voice_rab = new JMenuItem(makeBold("Duke (UK)"));
@@ -60,6 +62,7 @@ public class DropDownMenu {
 		
 		// Load list menu
 		JMenu loadMenu = new JMenu(makeBold("Load"));
+		loadMenu.setToolTipText("Load a new list");
 		menubar.add(loadMenu);
 		
 		loadList = new JMenuItem(makeBold("Load List"));
@@ -91,13 +94,29 @@ public class DropDownMenu {
 		JMenu progressMenu = new JMenu(makeBold("Progress"));
 		menubar.add(progressMenu);
 		
-		showProgress = new JMenuItem(makeBold("Show help"));
+		showProgress = new JMenuItem(makeBold("Show progress"));
 		progressMenu.add(showProgress);
 		
 		createProgressActionHandler();
 		
+		// Settings 
+		JMenu settingsMenu = new JMenu(makeBold("Settings"));
+		menubar.add(settingsMenu);
+		
+		showSettings = new JMenuItem(makeBold("Show settings"));
+		settingsMenu.add(showSettings);
+		
+		settingsMenuActionHandler();
+		
+
 
 			
+	}
+	
+	private void settingsMenuActionHandler() {
+		showSettings.addActionListener( (ActionListener) -> {
+			Settings.display();
+		});
 	}
 	private void createProgressActionHandler() {
 		showProgress.addActionListener( (ActionListener) -> {
