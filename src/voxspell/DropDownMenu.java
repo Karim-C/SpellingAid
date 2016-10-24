@@ -103,7 +103,7 @@ public class DropDownMenu {
 		
 		// Game progress menu
 		JMenu progressMenu = new JMenu(makeBold("<font color=yellow>P</font>rogress"));
-		progressMenu.setToolTipText("Show your Highest and current streak");
+		progressMenu.setToolTipText("Show your highest and current streak");
 		menubar.add(progressMenu);
 		
 		showProgress = new JMenuItem(makeBold("Show progress"));
@@ -128,18 +128,27 @@ public class DropDownMenu {
 
 			
 	}
-	
+	/*
+	 * Action handler ensures the settings are displayed when menu item is clicked
+	 */
 	private void settingsMenuActionHandler() {
 		showSettings.addActionListener( (ActionListener) -> {
 			Settings.display();
 		});
 	}
+	
+	/*
+	 * Action handler ensures the progress is displayed when menu item is clicked
+	 */
 	private void createProgressActionHandler() {
 		showProgress.addActionListener( (ActionListener) -> {
-			//GameProgress.getInstance();
 			GameProgress.display(frame);
 		});
 	}
+	
+	/*
+	 * Action handler ensures the help is displayed when menu item is clicked
+	 */
 	private void createHelpActionHandler() {
 		showHelp.addActionListener( (ActionListener) -> {
 			Help.display(frame);

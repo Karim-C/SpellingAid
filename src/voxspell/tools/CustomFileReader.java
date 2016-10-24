@@ -126,6 +126,9 @@ public class CustomFileReader {
 		}
 	}
 	
+	/*
+	 * This method adds high scores to a the save file
+	 */
 	public void addHighScore(String username, int score) {
 		File file = FileManager.HIGH_STREAKS;
 		if (usernameExist(file, username) != -1){
@@ -156,6 +159,9 @@ public class CustomFileReader {
 		
 	}
 	
+	/*
+	 * This method check whether the save file contains the username
+	 */
 	public int usernameExist(File file, String username){
 		String word;
 		BufferedReader reader;

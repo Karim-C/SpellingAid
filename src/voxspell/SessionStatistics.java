@@ -10,6 +10,8 @@ package voxspell;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +35,7 @@ public class SessionStatistics extends JPanel {
 	 */
 	private List<ArrayList<String[]>> currentStats;   
 
-	private static final Dimension TABLE_DIMENSION = new Dimension(260, 240);
+	private static final Dimension TABLE_DIMENSION = new Dimension(300, 300);
 	private static final int NUM_LEVELS = SpellingQuiz.NUM_OF_LEVELS;
 
 	private JTabbedPane _tableTabPane = new JTabbedPane();
@@ -219,8 +221,9 @@ public class SessionStatistics extends JPanel {
 	 * @author Karim Cisse
 	 */
 	private String calcAccurracy(String[] wordStats) {
+		NumberFormat formatter = new DecimalFormat("#0.00");     
 		Double accurracy = (Double.parseDouble(wordStats[1]) / Double.parseDouble(wordStats[2])) * 100;
-		return accurracy.toString();
+		return formatter.format(accurracy);
 	}
 
 	/**

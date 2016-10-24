@@ -20,7 +20,7 @@ import voxspell.tools.TextToSpeech;
 import voxspell.tools.VideoPlayer;
 
 /**
- * Represents a Spelling Quiz game.
+ * Represents a Spelling Quiz game. Handles the main game logic.
  * 
  * @author Karim Cisse - game logic/use of tools etc
  * @author Will Molloy - base GUI taken from assignment 2
@@ -82,7 +82,7 @@ public class SpellingQuiz extends JPanel {
 
 		// Where user enters the word
 		_wordEntryField = new JTextField();
-		_wordEntryField.setPreferredSize(new Dimension(500, 25));
+		_wordEntryField.setPreferredSize(new Dimension(500, 30));
 		
 		this.add(_wordEntryField, BorderLayout.EAST);
 
@@ -225,7 +225,8 @@ public class SpellingQuiz extends JPanel {
 			String word = _wordList.get(0);
 			
 
-			if (_wordEntryField.getText().equals(_wordList.get(0).toLowerCase())) {
+			if (_wordEntryField.getText().toLowerCase().equals(_wordList.get(0).toLowerCase())) {
+				
 				_textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 				_programOutputArea.append(_wordEntryField.getText() + "\n");
 

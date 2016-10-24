@@ -1,6 +1,7 @@
 package voxspell;
 
 import java.awt.Dimension;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +16,7 @@ import java.awt.Color;
 
 /**
  * This class contains methods associated with displaying the users progress
- * through the the quiz in a game like fashion
+ * through the the quiz in a game like fashion.
  * 
  * @author Karim Cisse
  *
@@ -60,7 +61,7 @@ public class GameProgress extends JPanel {
 
 		JLabel lblLevelProgress = new JLabel("Level progress");
 		lblLevelProgress.setForeground(new Color(255, 255, 255));
-		lblLevelProgress.setBounds(12, 188, 105, 15);
+		lblLevelProgress.setBounds(12, 178, 105, 25);
 		setLayout(null);
 
 		JLabel lblUsername = new JLabel("Username:");
@@ -77,7 +78,7 @@ public class GameProgress extends JPanel {
 		add(textFieldUsername);
 		textFieldUsername.setColumns(10);
 
-		JLabel lblLongestStreak = new JLabel("LongestStreak:");
+		JLabel lblLongestStreak = new JLabel("Longest Streak:");
 		lblLongestStreak.setToolTipText("Number of words correct in a row");
 		lblLongestStreak.setForeground(new Color(255, 255, 255));
 		lblLongestStreak.setBounds(12, 99, 114, 15);
@@ -92,14 +93,20 @@ public class GameProgress extends JPanel {
 		JLabel lblCurrentStreak = new JLabel("Current Streak:");
 		lblCurrentStreak.setToolTipText("Number of words correct in a row");
 		lblCurrentStreak.setForeground(new Color(255, 255, 255));
-		lblCurrentStreak.setBounds(12, 136, 114, 15);
+		lblCurrentStreak.setBounds(12, 128, 114, 15);
 		add(lblCurrentStreak);
 		
 		currentStreakTextField = new JTextField();
 		currentStreakTextField.setEditable(false);
 		currentStreakTextField.setColumns(10);
-		currentStreakTextField.setBounds(135, 134, 114, 25);
+		currentStreakTextField.setBounds(135, 126, 114, 25);
 		add(currentStreakTextField);
+		
+		CustomFileReader cfr = new CustomFileReader();	
+		int score = cfr.usernameExist(FileManager.HIGH_STREAKS, UserLogIn.getInstance().getCurrentUsername());
+		if (score != -1) {
+			longestStreak = score;
+		}
 
 	}
 
@@ -112,6 +119,7 @@ public class GameProgress extends JPanel {
 		textFieldUsername.setText(currentUser);
 	}
 	
+	/* This method increments the current streak and sets new longest sreaks when the current becomes greater */
 	public void setHighestStreak (boolean correct) {
 		
 		if (correct) {
@@ -130,6 +138,7 @@ public class GameProgress extends JPanel {
 		
 	}
 	
+	/* This method attachts the JPanel to a JFrame and makes it visible */
 	public static void display(JFrame frame) {
 		
 		
