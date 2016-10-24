@@ -235,10 +235,10 @@ public class SpellingQuiz extends JPanel {
 				_wordList.remove(0);// the word is removed from the list when it is correctly spelled
 
 				if (!_firstAttempt) {
-					_fileReader.appendWordToFile(word, FileManager.STATS_FAULTED);
+
 					_firstAttempt = true;
 				} else {
-					_fileReader.appendWordToFile(word, FileManager.STATS_MASTERED);
+
 					_wordsCorrectFirstAttempt++;
 				}
 				_wordsAttempt++;
@@ -253,8 +253,7 @@ public class SpellingQuiz extends JPanel {
 				if (_firstAttempt) {
 					_firstAttempt = false; // the next attempt will no longer be the first
 				} else {
-					_fileReader.appendWordToFile(word, FileManager.FAILED_WORDS);
-					_fileReader.appendWordToFile(word, FileManager.STATS_FAILED);
+
 					_wordList.remove(0); // the word is removed from the list after it is seen twice
 					_firstAttempt = true;
 					_stats.generateAndShowTableForLevel(_level);// resets so the next attempts can be tracked

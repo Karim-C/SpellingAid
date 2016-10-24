@@ -66,7 +66,7 @@ public class DropDownMenu {
 		createVoiceActionHandlers();
 		
 		// Load list menu
-		JMenu loadMenu = new JMenu(makeBold("Load"));
+		JMenu loadMenu = new JMenu(makeBold("<font color=yellow>L</font>oad"));
 		loadMenu.setToolTipText("Load a new list");
 		menubar.add(loadMenu);
 		
@@ -78,19 +78,19 @@ public class DropDownMenu {
 		createLoadListActionHandler();
 		
 		// Session statistics
-		JMenu statsMenu = new JMenu(makeBold("Statistics"));
+		JMenu statsMenu = new JMenu(makeBold("<font color=yellow>S</font>tatistics"));
 		statsMenu.setToolTipText("Show your accurarcy for each word");
 		menubar.add(statsMenu);
 		
 		showStats = new JMenuItem(makeBold("Show Stats"));
 		statsMenu.add(showStats);
 
-		showStats.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+		showStats.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		
 		createSessionStatistics();
 		
 		// Help menu
-		JMenu helpMenu = new JMenu(makeBold("Help"));
+		JMenu helpMenu = new JMenu(makeBold("<font color=yellow>H</font>elp"));
 		helpMenu.setToolTipText("Information about features");
 		menubar.add(helpMenu);
 		
@@ -102,7 +102,7 @@ public class DropDownMenu {
 		createHelpActionHandler();
 		
 		// Game progress menu
-		JMenu progressMenu = new JMenu(makeBold("Progress"));
+		JMenu progressMenu = new JMenu(makeBold("<font color=yellow>P</font>rogress"));
 		progressMenu.setToolTipText("Show your Highest and current streak");
 		menubar.add(progressMenu);
 		
@@ -114,13 +114,13 @@ public class DropDownMenu {
 		createProgressActionHandler();
 		
 		// Settings 
-		JMenu settingsMenu = new JMenu(makeBold("Settings"));
+		JMenu settingsMenu = new JMenu(makeBold("<font color=yellow>M</font>usic"));
 		menubar.add(settingsMenu);
 		
-		showSettings = new JMenuItem(makeBold("Show settings"));
+		showSettings = new JMenuItem(makeBold("Volume"));
 		settingsMenu.add(showSettings);
 		
-		showSettings.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		showSettings.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
 		
 		settingsMenuActionHandler();
 		

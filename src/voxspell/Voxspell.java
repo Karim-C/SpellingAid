@@ -12,15 +12,10 @@ import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.text.DefaultEditorKit;
 
 import voxspell.tools.BackgroundMusic;
 import voxspell.tools.CustomOptionPane;
@@ -45,11 +40,9 @@ public class Voxspell extends JPanel {
 	private JPanel _mainMenuPanel;
 	private static JPanel _cardLayoutPanel;
 
-	private static UIManager inputMap;
-
 	private static JFrame frame;
 	private SpellingQuiz _spellingQuiz;
-	private HistoryStatistics _viewStatistics = new HistoryStatistics();
+	private HighScores _viewHighScores = new HighScores();
 	
 	// Other Panels next to the card layout - Statistics and Settings
 	private SessionStatistics _sessionStatistics;
@@ -61,13 +54,12 @@ public class Voxspell extends JPanel {
 	// Names for main menu buttons
 	private static final String MAIN_MENU = "Return to main menu";
 	private static final String NEW_QUIZ = "New Spelling Quiz";
-	private static final String VIEW_STATS = "View Statistics";
+	private static final String VIEW_HIGHSCORES = "View High Scores";
 	private static final String CLEAR_STATS = "Clear Statistics";
 
 	// Main menu buttons
 	private JButton _newSpellingQuizBtn;
 	private JButton _viewStatsBtn;
-	private JButton _clearStatsBtn;
 
 	private Voxspell() {  
 		this.setLayout(new BorderLayout());
@@ -85,7 +77,7 @@ public class Voxspell extends JPanel {
 		_cardLayoutPanel.setLayout(cardLayout);
 		_cardLayoutPanel.add(_mainMenuPanel, MAIN_MENU);
 		_cardLayoutPanel.add(_spellingQuiz, NEW_QUIZ);
-		_cardLayoutPanel.add(_viewStatistics, VIEW_STATS);
+		_cardLayoutPanel.add(_viewHighScores, VIEW_HIGHSCORES);
 
 		/* Adding the cardlayout and sidepanel to the overall panel */
 		this.add(_cardLayoutPanel, BorderLayout.WEST);
@@ -100,15 +92,17 @@ public class Voxspell extends JPanel {
 		_mainMenuPanel.setBorder(BorderFactory.createTitledBorder("<html><font size=\"8\"><u><i><b><font color=yellow>Vox</font><font color=white>spell</font></b></i></u></font></html>"));
 		_mainMenuPanel.setBackground(new Color(0, 51, 102));
 		_mainMenuPanel.setPreferredSize(new Dimension(600,700));
+		_mainMenuPanel.setLayout(null);
 		_newSpellingQuizBtn = new JButton(NEW_QUIZ);
-		_viewStatsBtn = new JButton(VIEW_STATS);
-		_clearStatsBtn = new JButton(CLEAR_STATS);
+		_newSpellingQuizBtn.setBounds(0, 0, 161, 25);
 		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(4,1));
-		buttonPanel.add(_newSpellingQuizBtn);
+		buttonPanel.setBounds(220, 188, 161, 100);
+		buttonPanel.setLayout(null);
+		_viewStatsBtn = new JButton(VIEW_HIGHSCORES);
+		_viewStatsBtn.setBounds(0, 63, 161, 25);
 		buttonPanel.add(_viewStatsBtn);
-		buttonPanel.add(_clearStatsBtn);
+		buttonPanel.add(_newSpellingQuizBtn);
 		buttonPanel.setBackground(new Color(0, 51, 102));
 		_mainMenuPanel.add(buttonPanel);
 
@@ -123,16 +117,8 @@ public class Voxspell extends JPanel {
 		});
 
 		_viewStatsBtn.addActionListener( (ActionListener) -> {
-			cardLayout.show(_cardLayoutPanel, VIEW_STATS);
-			_viewStatistics.generateAndShowStats();
-		});
-
-		_clearStatsBtn.addActionListener( (ActionListener) -> {
-			CustomOptionPane customOptionPane = new CustomOptionPane(this);
-			if (customOptionPane.yesNoDialog("Clear statistics, are you sure?", "Clearing statistics")){
-				_sessionStatistics.clearStats();
-				HistoryStatistics.clearStatistics();
-			}
+			cardLayout.show(_cardLayoutPanel, VIEW_HIGHSCORES);
+			_viewHighScores.display();
 		});
 	}
 	
@@ -196,11 +182,6 @@ public class Voxspell extends JPanel {
 		/* Starts the background music*/
 		BackgroundMusic.getInstance();
 		
-/*		// CTRL + H
-		KeyStroke key = KeyStroke.getKeyStroke("ctrl*(typed|(pressed)VK_H)");
-		// bind the keystroke to an object
-		inputMap.put(key, DefaultEditorKit.backwardAction);*/
-
 	}
 
 	public static void main(String[] args) {

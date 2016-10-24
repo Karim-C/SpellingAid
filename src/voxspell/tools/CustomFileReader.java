@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import voxspell.FileManager;
+
 /**
  * Contains a few methods to read files for statistics/words from the wordlist.
  * 
@@ -23,7 +25,8 @@ public class CustomFileReader {
 	/*
 	 * The word list read in to the program is determined by this field. If the user does not specify a list this in the default list. 
 	 */
-	private static String filename = "NZCER-spelling-lists.txt"; 
+	private static String filename = "NZCER-spelling-lists.txt";
+	private ArrayList<String> highScoreFileArray; 
 
 	/**
 	 * Reads a set of 10 words from the wordlist file based on the level provided.
@@ -107,18 +110,87 @@ public class CustomFileReader {
 		}
 	}
 	
-	/**
-	 * Reads words line by line from a file into a HashSet.
-	 * 
-	 * @author Will Molloy
+	/*
+	 * Clears the saved scores
 	 */
-	public void readFileByLineIntoSet(File file, HashSet<String> words){
+	
+	public void clearStreaks(File file){
+		BufferedWriter writer;
+		try {
+			writer = new BufferedWriter(new FileWriter(file, false));
+			writer.write("");
+			writer.newLine();
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addHighScore(String username, int score) {
+		File file = FileManager.HIGH_STREAKS;
+		if (usernameExist(file, username) != -1){
+			highScoreFileArray = new ArrayList<String>();
+			String word;
+			BufferedReader reader;
+			BufferedWriter writer;
+			try {
+				reader = new BufferedReader(new FileReader(file));
+				while ((word = reader.readLine()) != null){
+					String[] strArray = word.split(",");
+					if (!strArray[0].equals(username) && (strArray.length == 2)){
+						highScoreFileArray.add(word);
+					}
+				}
+				writer = new BufferedWriter(new FileWriter(file, false));
+				writer.write("");
+				writer.newLine();
+				writer.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			for (String un : highScoreFileArray){
+				appendWordToFile(un, file);
+			}
+		}
+		appendWordToFile(username + "," + score, FileManager.HIGH_STREAKS);
+		
+	}
+	
+	public int usernameExist(File file, String username){
 		String word;
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(file));
 			while ((word = reader.readLine()) != null){
-				words.add(word);
+				String[] strArray = word.split(",");
+				if ((strArray.length == 2) &&  strArray[0].equals(username) ){
+					reader.close();
+					return Integer.parseInt(strArray[1]);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
+	/**
+	 * Reads words line by line from a file into a HashSet.
+	 * 
+	 * @author Will Molloy
+	 */
+	public void readFileByLine(File file, ArrayList<String[]> scores){
+		String word;
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			while ((word = reader.readLine()) != null){
+				String[] strArray = word.split(",");
+				if (strArray.length == 2){
+					scores.add(strArray);
+				}
+				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

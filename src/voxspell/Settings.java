@@ -32,7 +32,7 @@ public class Settings extends JPanel {
 		setBackground(new Color(0, 51, 102));
 		setLayout(null);
 		
-		JLabel lblSettings = new JLabel("<html><h1>Settings</h1></html>");
+		JLabel lblSettings = new JLabel("<html><h1>Music</h1></html>");
 		lblSettings.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSettings.setForeground(new Color(255, 255, 255));
 		lblSettings.setBounds(12, 12, 426, 37);

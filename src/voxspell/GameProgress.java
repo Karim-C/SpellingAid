@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import voxspell.tools.CustomFileReader;
+
 import java.awt.Color;
 
 /**
@@ -119,6 +122,8 @@ public class GameProgress extends JPanel {
 		
 		if(longestStreak < streak) {
 			longestStreak = streak;
+			CustomFileReader cfr = new CustomFileReader();
+			cfr.addHighScore(UserLogIn.getInstance().getCurrentUsername(), longestStreak);
 		}
 		currentStreakTextField.setText(streak + "");
 		textFieldLongestStreak.setText(longestStreak + "");

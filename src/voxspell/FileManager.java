@@ -14,13 +14,10 @@ import java.io.PrintWriter;
 public class FileManager {
 
 	// Files -- can be accessed by classes in the same package
-	protected static final File FAILED_WORDS = new File(".failed_words");
-	protected static final File STATS_MASTERED = new File(".stats_mastered");
-	protected static final File STATS_FAULTED = new File(".stats_faulted");
-	protected static final File STATS_FAILED = new File(".stats_failed");
+	
 	public static final File HIGH_STREAKS = new File(".high_streaks");
 	
-	private static final File[] _hiddenFiles = { FAILED_WORDS, STATS_MASTERED, STATS_FAILED, STATS_FAULTED, HIGH_STREAKS };
+	private static final File[] _hiddenFiles = { HIGH_STREAKS };
 	
 	
 	/**
